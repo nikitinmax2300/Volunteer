@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-4ZPLezkTZTsojWFhpdFembdzFudphhoOzIunR1wH6g1WQDzCAiPvDyitaK67mp0+" crossorigin="anonymous"> -->
+
+        <!-- <link href="" type="text/css"> -->
+        <title>Good</title>
+    </head>
+    <style type="text/css"> 
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFDEE9;
+    background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover
+    /* transform: translate(-50%, -50%); */
+    
+}
+
+
+
+button {
+font-family: 'Roboto', sans-serif;
+font-size: 22px;
+color: #fff !important;
+text-decoration: none;
+background: #047EF3;
+padding: 20px;
+border-radius: 50px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+outline: none;
+}
+
+.rightBtn {
+  margin-left: 30px;
+}
+
+.leftBtn {
+  margin-right: 30px;
+}
+
+button:hover {
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+}
+
+.wrapper {
+    top: 30%;
+    left: 40%;
+    position:fixed;
+}
+.input {
+  display: none;
+  top: 50%;
+  left: 25%;
+  position:fixed;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+}
+form button {
+  font-size: 16px;
+  /* margin-left: 100px; */
+  margin-top: 20px;
+  margin-right: 7px;
+  padding: 10px;
+}
+.submit {
+margin-left: 115px;
+}
+.update {
+  background: #79ade7;
+  font-size: 16px;
+  padding: 10px;
+  margin-left: 75px;
+}
+.delete {
+  background: #fc8e8e;
+  font-size: 16px;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+form input {
+  float: right; 
+  clear: both;
+  margin-left: 10px;
+}
+
+.projects {
+     display: none;
+    /* display: flex; */
+    flex-direction: column;
+    top: 50%;
+    left: 53%;
+    position:fixed;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: scroll;
+    width: 700px;
+    height: 380px;
+}
+
+.header {
+  text-align: center;
+  font-size: large;
+}
+
+.projectsList {
+  background-color: white;
+  border: 1px solid #047EF3;
+  border-radius: 10px;
+  margin: 25px;
+}
+.projectsList span {
+padding: 5px;
+}
+
+img {
+  width: 620px;
+  height: 150px;
+}
+
+.projectsList  {
+  text-align: center;
+}
+
+.country {
+font-size: 18px;
+}
+
+.name {
+font-size: 20px;
+}
+
+.applybtn {
+  font-size: 14px;
+  padding: 7px;
+  margin-bottom: 5px;
+}
+
+.applybtn a {
+  text-decoration: none;
+  color: white;
+}
+
+</style>
+
+<body>
+  <section>
+    <div class="wrapper">
+      <button class="leftBtn" >Do Good</button>
+      <button class="rightBtn"> Be Better</button>
+    </div>
+    <div class = "input">
+      <form class ='goodForm' action="/projects" method="POST">
+        <label for="image"> Image </label>
+        <input id = "image" type="text" placeholder="place URL of the img here" name="image"><br><br>
+        <label for="name"> Name of the project </label>
+        <input id="name" type="text" placeholder="name" name="name"><br><br>
+        <label for="descriprion"> Description </label>
+        <input id = "descriprion" type="text" placeholder="briefly descibe the project" name="descriprion"><br><br>
+        <label for="country"> Location</label>
+        <input id = "country" type="text" placeholder="city/country" name="country"><br><br>
+        <label for="apply"> Where to apply </label>
+        <input id = "apply" type="text" placeholder="place URL of the project here" name="apply"><br><br>
+        <button type="submit" class = "submit">Submit</button>
+      </form>
+      <hr>
+        <button type="update" class = "update" >Update</button>
+        <button type="delete" class = "delete">Delete</button> 
+    </div>
+      <div class = "projects"> 
+        <span class= 'header'><strong> Current Projects</strong></span>
+        <% for(var i = 0; i < projects.length; i++) {%>
+          <div class="projectsList">
+            <span><img src="<%= projects[i].image %>"></span> <br>
+            <span class="name"><strong><%= projects[i].name %></strong></span> <br>
+            <span><%= projects[i].descriprion %></span> <br>
+            <span class="country"><%= projects[i].country %></span> <br>
+            <button class="applybtn"><a href = "<%= projects[i].apply %>">Apply</a></button> <br>
+          </div>
+          <% } %>
+      </div>
+  </section>
+</body>
+<script src="/main.js"></script>
+</html>
